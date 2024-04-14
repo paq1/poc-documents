@@ -1,6 +1,4 @@
-use std::fmt::format;
 use std::net::{SocketAddr, TcpStream};
-use std::sync::Arc;
 
 use ssh2::Session;
 
@@ -28,7 +26,7 @@ impl SftpServerService {
                 format!("{custom_err}\n{tcp_err}")
             })?;
 
-        let mut session = Session::new().unwrap();
+        let mut session = Session::new().map_err(|err| err.to_string())?;
         session.set_tcp_stream(tcp);
         session.handshake().unwrap();
 
