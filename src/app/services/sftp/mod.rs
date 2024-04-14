@@ -45,12 +45,13 @@ impl SftpServerService {
                 println!("[{host:?}:{port:?}] -> connection tcp ok !");
                 tcp
             })
-            .map_err(|err| { CustomError::new("test") })
+            .map_err(|err| { CustomError::new(err.to_string().as_str()) })
     }
 }
 
 impl FileService for SftpServerService {
     fn upload_file(&self) -> bool {
-        false
+        // fixme envoyer un fichier sur le serv
+        self.session.authenticated()
     }
 }
