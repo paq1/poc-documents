@@ -6,13 +6,16 @@ mod core;
 mod app;
 mod settings;
 
-fn main() -> Result<(), String> {
+use std::error::Error;
+
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn Error>> {
     dotenv::dotenv().ok();
 
     println!("create services");
 
     let settings: Arc<Settings> = Arc::new(Settings::new().map_err(|err| err.to_string())?);
-    let _ = SftpServerService::new_sftp_server_service(&settings).unwrap();
+    let _ = SftpServerService::new_sftp_server_service(&settings)?;
 
     println!("good buy");
     Ok(())
