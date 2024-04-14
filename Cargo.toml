@@ -1,0 +1,15 @@
+[package]
+name = "poc-documents"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ dotenv = "0.15.0"
+chrono = "0.4.37"
+uuid = "1.8.0"
+async-trait = "0.1.79"
+ssh2 = "0.9.4"
+config = "0.14.0"
+serde = "1.0.197"
